@@ -1,1 +1,24 @@
-# pat-circuit-breaker
+---
+tags: []
+---
+:toc:
+:icons: font
+:source-highlighter: prettify
+:project_id: pat-circuit-breaker
+This pattern describes how to architect a fault tolerant circuit breaker for your application.
+
+== Problem
+
+PROBLEM
+
+== Solution
+
+SOLUTION
+
+== Considerations
+
+CONSIDER THIS
+
+== Usage Scenarios
+
+USE IT NOW
