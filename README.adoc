@@ -19,6 +19,10 @@ The concept of a circuit breaker is borrowed from the design of electrical circu
 
 Within distributed software systems, the circuit breaker pattern is extended to include a third state called "half-open". In this state, a limited number of requests are allowed through in order to determine the status of the remote service. If any of the requests fail, the circuit breaker will return to "open" for a specified time period, at the end of which it will cycle back to "half-open" and attempt to determine the state of the remote service again. The circuit breaker will continue this cycle until the remote service is available and the circuit can be "closed".
 
+image::images/diagram.png[Circuit Breaker State Machine]
+
+This diagram illustrates the various states of circuit breaker pattern. Note all the conditions and sequence of state changes.
+
 == Considerations
 
 CONSIDER THIS
