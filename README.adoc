@@ -9,11 +9,15 @@ This pattern describes how to architect a fault tolerant circuit breaker for you
 
 == Problem
 
-Within distributed system architectures, it is often common for components to make remote calls to other services within the system. Generally, this separation of concerns can be ideal. However, when a service becomes very busy, or even totally unresponsive, it may cause a cascading of service failures all the way up to the user. These situations may be difficult to anticipate within the caller calling service. Moreover, if many service instances are attempting to make concurrent requests to an unavailable service, then precious resources can be consumed or locked from other uses.
+Within distributed system architectures, it is often common for components to make remote calls to other services within the system. Generally, this separation of concerns can be ideal. However, when a service becomes very busy, or even totally unresponsive, it may cause a cascading of service failures all the way up to the user. These situations may be difficult to anticipate within the calling service. Moreover, if many service instances are attempting to make concurrent requests to an unavailable service, then precious resources can be consumed or locked from other uses.
 
 == Solution
 
-SOLUTION
+A solution to this problem is to proxy the function calls to the remote service through a circuit breaker object. The circuit breaker monitors the performance and health of the remote service. If too many connection attempts have failed, or the connection is being very slow, the circuit breaker will prevent the calling function from attempting to connect to the remote service, and directs it instead to return with a fallback response. The pattern then prescribes that the circuit breaker should determine when the remote service is available and allow the calling function to once again make remote requests.
+
+The concept of a circuit breaker is borrowed from the design of electrical circuits. Prior to the invention of circuit breakers, an electrical surge could reach all the way to devices that were not designed to withstand such a spike. In the worst case this could cause destructive fires and loss of life. Circuit breakers are designed to trip or "open" when they reach a certain threshold, preventing worse consequences. In the case of electrical circuits the default response is no electricity. Modern electrical circuit breakers are able to detect when conditions have returned to normal parameters and reset or "close" the circuit so devices once again have electricity.
+
+Within distributed software systems, the circuit breaker pattern is extended to include a third state called "half-open". In this state, a limited number of requests are allowed through in order to determine the status of the remote service. If any of the requests fail, the circuit breaker will return to "open" for a specified time period, at the end of which it will cycle back to "half-open" and attempt to determine the state of the remote service again. The circuit breaker will continue this cycle until the remote service is available and the circuit can be "closed".
 
 == Considerations
 
