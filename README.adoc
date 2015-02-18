@@ -9,7 +9,7 @@ This pattern describes how to architect a fault tolerant circuit breaker for you
 
 == Problem
 
-PROBLEM
+Within distributed system architectures, it is often common for components to make remote calls to other services within the system. Generally, this separation of concerns can be ideal. However, when a service becomes very busy, or even totally unresponsive, it may cause a cascading of service failures all the way up to the user. These situations may be difficult to anticipate within the caller calling service. Moreover, if many service instances are attempting to make concurrent requests to an unavailable service, then precious resources can be consumed or locked from other uses.
 
 == Solution
 
