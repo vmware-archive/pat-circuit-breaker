@@ -29,4 +29,8 @@ CONSIDER THIS
 
 == Usage Scenarios
 
-USE IT NOW
+The following list contains some examples regarding when to use the circuit breaker pattern:
+
+* An application depends on a remote service that requires network communication in order to consume it.
+* Multiple components of a distributed system utilize a shared resource, which if unavailable can prevent the entire system from operating.
+* Operations notices that a database is experiencing very high latency, and if left unhandled, the database slow down can begin to exhaust upstream thread pools, taking the application offline.
