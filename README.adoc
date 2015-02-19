@@ -29,8 +29,9 @@ Consider the following issues when using the circuit breaker pattern:
 
 * The threshold should allow for minor connectivity issues, but prevent major catastrophes. For example, Netflix Hystrix defaults to twenty failures within five seconds.
 * The fallback response for any circuit breaker protected function call should be reasonable for the stability of the application.
-* The same circuit breaker is used for all concurrent transactions. Hysterix supports automated batching through request collapsing.
-* Hysterix logs all proxied requests, which enables realtime support for monitoring.
+* The same circuit breaker is used for all concurrent transactions. Hystrix supports automated batching through request collapsing.
+* Hystrix can log proxied requests, but this must be enabled explicitly.
+* Realtime monitoring is available through the Hystrix dashboard.
 
 == Usage Scenarios
 
