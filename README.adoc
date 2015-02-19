@@ -21,11 +21,16 @@ Within distributed software systems, the circuit breaker pattern is extended to 
 
 image::images/diagram.png[Circuit Breaker State Machine]
 
-This diagram illustrates the various states of circuit breaker pattern. Note all the conditions and sequence of state changes.
+This diagram illustrates the various states of the circuit breaker pattern. Note the conditions and sequence of state changes.
 
 == Considerations
 
-CONSIDER THIS
+Consider the following issues when using the circuit breaker pattern:
+
+* The threshold should allow for minor connectivity issues, but prevent major catastrophes. For example, Netflix Hystrix defaults to twenty failures within five seconds.
+* The fallback response for any circuit breaker protected function call should be reasonable for the stability of the application.
+* The same circuit breaker is used for all concurrent transactions. Hysterix supports automated batching through request collapsing.
+* Hysterix logs all proxied requests, which enables realtime support for monitoring.
 
 == Usage Scenarios
 
